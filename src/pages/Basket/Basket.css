@@ -1,0 +1,63 @@
+*{
+    box-sizing: border-box;
+}
+h2{ 
+    color: rgb(5, 98, 5);
+   
+}
+.basket {
+    /* background: green !important; */
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    background-color: rgb(212, 214, 212);
+}
+
+.cart-items {
+    flex-basis: 60%;
+}
+
+
+
+/* .item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+} */
+
+.price-summary  {
+    flex-basis: 10%
+
+}
+.item, .subtotal, .delivery-fee, .total {
+     display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+}
+.proceed {
+    flex-basis: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+.item-qty {
+    margin: 0 5px;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+ .proceed-btns {
+     display: flex;
+     flex-flow: column wrap;
+     flex: 1 100%;
+     margin: 2rem;
+     
+ }
+.btn{
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px solid lightgrey;
+}

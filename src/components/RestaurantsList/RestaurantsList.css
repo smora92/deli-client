@@ -1,0 +1,80 @@
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+img > .img {
+    display: inline-block;
+    /* margin-left: 20px; */
+    width: 20%;
+    border: 1px solid slategray;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        background-color: whitesmoke;
+  }
+
+  .restaurant {
+      height: 150px !important;
+  }
+
+  .res-name {
+    font-size: 1.1em;
+  }
+}
+
+/* ul > li {
+ display: inline-block;
+ font-size: 20px;
+ padding: 20px;
+} */
+.restaurant {
+   /* width: 200px; */
+   height: fit-content;
+   border: 1px solid #333;
+   display: flex;
+   justify-content: space-between;
+   cursor: pointer;
+   /* min-height: 15vh; */
+}
+
+.restaurant .title-img {
+    border: 1px solid #3333;
+    width: fit-content;
+}
+
+
+.restaurant .title-img img {
+    /* width: 150px; */
+    height: 150px;
+    max-width: 100%;
+}
+
+.restaurant .text-action {
+    height: 150px;
+    flex-basis: 55%;
+    /* margin-left: px; */
+}
+
+.res-name {
+    padding: 5px 0;
+    margin: 0;
+}
+
+.res-desc {
+    max-width: 200px;
+    overflow: hidden;
+    padding: 0;
+    margin: 10px 0;
+    color: rgb(92, 91, 91);
+}
+
+.res-rating {
+    padding: 10px 0;
+    margin: 10px 0;
+}
+
+.res-delivery {
+    color: green;
+}

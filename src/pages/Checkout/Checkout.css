@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+}
+
+h3{
+    text-align: center;
+}
+body {
+    margin:0 auto;
+    padding: 10px 25px;
+    
+}
+
+button {
+    background-color: rgb(67, 187, 147);
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 2px;
+}
+@media screen and (max-width: 768px) {
+    body {
+        max-width: 700px;
+    }
+    .icons {
+        padding-bottom: 5px;
+    }
+    input {
+        margin-bottom: 10px;
+    }
+    label, input {
+        width: 100%;
+
+    }
+}
+
+@media screen and (min-width: 769px) {
+    label, input {
+        display: block;
+        padding: 10px;
+        min-width: 50%;
+    }
+}

@@ -1,0 +1,13 @@
+.inp-search {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+@media screen and  (max-width: 500px) {
+    .inp-search {
+        width: 60vw;
+    }
+    body{
+        background-color: whitesmoke;
+    }
+}

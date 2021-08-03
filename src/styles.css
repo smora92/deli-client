@@ -1,0 +1,12 @@
+:root {
+    --accent-color: #57b46b;
+    --base-color: hsl(140, 14%, 4%);
+    font-size: 16px;
+}
+*{
+    box-sizing: border-box;
+    color: var(--base-color);
+}
+a{
+    color: var(--accent-color);
+}
