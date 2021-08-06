@@ -4,11 +4,16 @@ import './Checkout.css'
 import local from 'local-storage'
 
 
+
+
+
 class Checkout extends Component {
     constructor() {
         super()
         this.state = {
             purchased: [],
+            restaurants: [],
+
 
         }
     }
@@ -19,7 +24,14 @@ class Checkout extends Component {
         const purchased = local('purchased')
         const paid = local('paid')
         if (!paid) {
-            return <h1>purchase items first</h1>
+            return (
+                <div>
+                    <h2>purchase items first</h2>
+                    <button>Back</button>
+
+                </div>
+            )
+
         }
         const updated = purchased ? purchased : []
         if (updated.length !== this.state.purchased.length) {
@@ -39,33 +51,34 @@ class Checkout extends Component {
                 <div className="Checkout">
                     <div className="cart-items">
                         <ul className="cart-list">
-                            {this.state.purchased && (this.state.purchased.map(item => <li key={item.item_id}><div className="item">
-
-                                <div className="title">
-                                    {item.item_name}
-                                    {' '}
-                                    {/*equivalent .join */}
-                                    x
-                                    {' '}
-                                    {item.ordered}
+                            {this.state.purchased && (this.state.purchased.map(item => <li key={item.item_id}>
+                                <div className="row">
+                                    <span className="title">
+                                        {item.item_name}
+                                        {' '}
+                                        {/*equivalent .join */}
+                                        x
+                                        {' '}
+                                        {item.ordered}
+                                    </span>
+                                    <span className="price">${item.price * item.ordered}</span>
                                 </div>
-                                <div className="price">${item.price * item.ordered}</div>
-                            </div></li>))}
+                            </li>))}
                         </ul>
                     </div>
                     <div className="price-summary">
-                        <div className="subtotal">
+                        <div className="row">
                             <span>Subtotal</span>
                             <span>${subtotal}</span>
                         </div>
-                        <div className="delivery-paid">
+                        <div className="row">
                             <span>Delivery paid</span>
                             <span>${paid}</span>
                         </div>
                         <hr />
                     </div>
                     <div className="proceed">
-                        <div className="total">
+                        <div className="row">
                             <span>Total</span>
                             <span>${total}</span>
                         </div>
@@ -73,7 +86,7 @@ class Checkout extends Component {
                     </div>
                 </div>
 
-                <button><Link to={'/restaurants'}>new order</Link></button>
+                <button className="btn" ><Link to={'/restaurants'}>new order</Link></button>
             </>
         )
     }

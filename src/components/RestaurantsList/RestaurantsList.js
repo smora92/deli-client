@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import RestaurantsContext from '../../RestaurantsContext'
 import { Link } from 'react-router-dom'
+import Rating from '../../components/Rating/Rating';
 import "./RestaurantsList.css"
 
 class RestaurantsList extends Component {
     static defaultProps = {
         restaurants: [],
+
     }
     render() {
         const { restaurants } = this.props;
@@ -14,20 +15,20 @@ class RestaurantsList extends Component {
             <>
                 <h2>Restaurants</h2>
                 <ul>
-                    {restaurants.map(restaurant => (
+                    {restaurants && restaurants.map(restaurant => (
                         <li key={restaurant.id}>
                             <Link to={`/restaurant/${restaurant.id}/${restaurant.restaurant_name}/${restaurant.delivery_fee}`}>
                                 <div className="restaurant">
                                     <div className="title-img">
-                                        <img src={restaurant.image} alt="food picture" className="img" />
+                                        <img src={restaurant.image} alt="restaurant-dish" className="img" />
                                     </div>
                                     <div className="text-action">
                                         <h2 className="res-name">{restaurant.restaurant_name}</h2>
-                                        <span className="res-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                        <Rating value={this.props.rating} />
+                                        <span className="res-rating">{restaurant.rating}</span>
                                         <p className="res-desc">{restaurant.description.substring(0, 70)}</p>
-                                        <p className="res-delivery">${restaurant.delivery_fee} delivery fee</p>
+                                        <p className="res-delivery">${restaurant.delivery_fee} fee</p>
 
-                                        {/* <span className="rating">{restaurant.rating}</span> */}
                                     </div>
                                 </div>
                             </Link>

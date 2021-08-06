@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Home.css';
-import image from './Landing.jpg'
 import { Link } from 'react-router-dom';
 
 class Home extends Component {
@@ -15,7 +14,8 @@ class Home extends Component {
 
     render() {
         return (
-            <div >
+            <div className="home-container"  >
+
                 <nav className='navbar'>
                     <div className='navbar-container'>
                         <Link to='/' className='navbar-logo'>
@@ -24,23 +24,23 @@ class Home extends Component {
                         <ul>
                             <li className='nav-item'>
                                 <Link to='/Restaurants' className='nav-links' >
-                                    <h3>Restaurants</h3>
+                                    <h2>Restaurants</h2>
                                 </Link>
                             </li>
 
 
-                            {/* <li className='nav-item'>
-                                <Link to='/sign-up' className='nav-links-mobile' >
-                                    Sign Up
+                            <li className='nav-item'>
+                                <Link to='/demo' className='nav-links-mobile' >
+                                    <h2>Demo</h2>
                                 </Link>
-                            </li> */}
+                            </li>
                         </ul>
                     </div>
 
                 </nav>
 
                 <div>
-                    <p>Welcome to DELI delivery</p>
+                    <h3>Welcome to DELI delivery</h3>
                 </div>
             </div>
         )

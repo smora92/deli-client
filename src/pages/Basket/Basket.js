@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import './Basket.css'
 import local from 'local-storage'
-import Restaurant from '../Restaurant/Restaurant';
 
 class Basket extends Component {
     constructor() {
@@ -35,7 +34,7 @@ class Basket extends Component {
 
 
     render() {
-        const { menu } = this.props;
+
         console.log(this.props);
         const ordered = local('ordered')
         const fee = local('fee')
@@ -48,14 +47,14 @@ class Basket extends Component {
                 ordered: updated
             })
         }
-        const items = this.state.ordered.map(item => {
-            return (
-                <div>
-                    <h2>{item.item_name}</h2>
-                    <h3></h3>
-                </div>
-            )
-        })
+        // const items = this.state.ordered.map(item => {
+        //     return (
+        //         <div>
+        //             <h2>{item.item_name}</h2>
+        //             <h3></h3>
+        //         </div>
+        //     )
+        // })
         const subtotals = this.state.ordered.map(item => item.price * item.ordered)
         const subtotal = subtotals.reduce((a, b) => { return a + b }, 0)
         const total = subtotal + parseFloat(fee)

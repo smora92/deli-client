@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Menu from '../../Menu/Menu'
 import { withRouter } from 'react-router-dom'
 import './Restaurant.css'
+import local from 'local-storage'
 
 
 class Restaurant extends Component {
@@ -11,11 +12,26 @@ class Restaurant extends Component {
         this.state = {
             menu: [],
             basket: false,
-            itemCount: 0
+            itemCount: 0,
 
         }
     }
-    goToBasket = () => {
+
+    handleItemAdd = (items) => {
+        let count = 0;
+        if (items) {
+            items.forEach(item => {
+                count = count + item.ordered;
+            })
+            // return count;
+        }
+        console.log('count', count);
+        this.setState({ itemCount: count });
+    }
+
+    goToBasket = (e) => {
+        //implement no access to basket if no items
+
         this.setState({
             basket: true
         })
@@ -23,31 +39,30 @@ class Restaurant extends Component {
         this.props.history.push(`/basket/${id}/${name}/${fee}`)
     }
 
-    handleItemAdd = (e) => {
-        console.log("item count", e);
+
+    handleItemRemove = (items) => {
         let count = 0;
-        if (e) {
-            e.map(m => {
-                console.log(m);
-                count = count + m.ordered;
+        if (items) {
+            items.forEach(item => {
+                count = count - item.ordered;
             })
         }
-        console.log('count', count);
         this.setState({ itemCount: count });
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    // handleSubmit(e) {
+    //     e.preventDefault();
 
-        const { restaurant_name, description, rating, delivery_fee } = e.target;
-        const restaurant = {
-            restaurant_name: restaurant_name.value,
-            description: description.value,
-            rating: rating.value,
-            delivery_fee: delivery_fee.value,
+    //     const { restaurant_name, description, rating, delivery_fee } = e.target;
+    //     const restaurant = {
+    //         restaurant_name: restaurant_name.value,
+    //         description: description.value,
+    //         rating: rating.value,
+    //         delivery_fee: delivery_fee.value,
 
-        };
-    }
+    //     };
+    // }
+
     async componentDidMount() {
         console.log(process.env.REACT_APP_API_BASE_URL, 'API_BASE_URL')
         const { id } = this.props.match.params
@@ -65,23 +80,34 @@ class Restaurant extends Component {
             this.setState({
                 menu: data
             })
+            this.getItemCount();
             // )
         } catch (err) {
             console.log(err);
         }
     }
 
+    getItemCount = () => {
+        const items = local('ordered');
+        if (!items) return 0;
+        let count = 0;
+        items.forEach(item => { count = count + item.ordered });
+        this.setState({ itemCount: count });
+    }
+
 
     render() {
         console.log('render')
-        const { id, name, fee } = this.props.match.params
-
+        const { name, fee } = this.props.match.params
+        console.log()
         return (
             <>
                 <h3>{name}</h3>
 
                 <Menu menu={this.state.menu}
-                    onItemAdded={this.handleItemAdd} fee={fee} />
+                    onItemAdded={this.handleItemAdd}
+                    onItemRemove={this.handleItemRemove}
+                    fee={fee} />
                 <div className="proceed">
 
                     <button className="btn" onClick={this.goToBasket}> Basket X {this.state.itemCount} </button>
@@ -91,6 +117,6 @@ class Restaurant extends Component {
 
         )
     }
-}
 
+}
 export default withRouter(Restaurant)

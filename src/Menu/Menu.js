@@ -63,6 +63,13 @@ export default class Menu extends Component {
                                 })
                             }
 
+                            if (already && already.ordered === 0) {
+                                let i = updated.findIndex(item => item.item_id === already.item_id);
+                                updated.splice(i, 1);
+                                local('ordered', updated);
+                            }
+                            this.props.onItemRemove();
+
                         }
                         const remove = full && <button className="" onClick={subtract}>-</button>
 
@@ -73,7 +80,7 @@ export default class Menu extends Component {
                                         <h3 className="item-name">{item.item_name} </h3>
                                         <p className="item-price">${item.price}</p>
                                         <div className="controls">
-                                            {remove}
+                                            <button onClick={subtract}>-</button>
                                             <p className="qty" >{quantity}</p>
                                             <button className="" onClick={add}>+</button>
                                         </div>
