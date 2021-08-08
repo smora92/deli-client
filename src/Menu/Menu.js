@@ -50,7 +50,6 @@ export default class Menu extends Component {
                             this.props.onItemAdded(ordered)
                         }
 
-                        const full = already && already.ordered > 0
                         const subtract = () => {
                             console.log('subtract', already)
 
