@@ -71,7 +71,7 @@ export default class Menu extends Component {
                             this.props.onItemRemove();
 
                         }
-                        const remove = full && <button className="" onClick={subtract}>-</button>
+
 
                         return (
                             <li key={item.item_id}>
